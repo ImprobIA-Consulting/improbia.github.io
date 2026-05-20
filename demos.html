@@ -1,326 +1,422 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ImprobIA - Demos de proyectos web y soluciones de Inteligencia Artificial.">
-    <title>ImprobIA - Demos de Proyectos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Estilos Generales */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            line-height: 1.6;
-        }
-        h1, h2, h3 {
-            color: #ffffff;
-            font-weight: 600;
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        a:hover {
-            color: #5dade2;
-        }
-        section {
-            padding: 60px 20px;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ImprobIA - Demos interactivas de nuestros proyectos web y soluciones de Inteligencia Artificial." />
+  <title>ImprobIA | Demos de Proyectos y Casos de Éxito</title>
 
-        /* Header */
-        header {
-            background-color: rgba(44, 62, 80, 0.9);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            box-sizing: border-box;
-            z-index: 1000;
-        }
-        header.sticky {
-            position: sticky;
-            top: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        nav li {
-            margin-left: 25px;
-        }
-        nav a {
-            color: #ecf0f1;
-            font-weight: 600;
-            font-size: 1rem;
-        }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-        /* Hero Section (adaptado para Demos) */
-        .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.95)), url('https://placehold.co/1200x800/2c3e50/ffffff?text=ImprobIA') no-repeat center center/cover;
-            padding: 100px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 50vh;
-        }
-        .hero-content {
-            max-width: 800px;
-        }
-        .hero-content h2 {
-            font-size: 2.8rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-        }
-        .hero-content p {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            line-height: 1.4;
-            color: #ffffff;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-        }
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
 
-        /* Demo Buttons Section */
-        .demos-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .demo-btn {
-            display: inline-block;
-            background-color: #3498DB;
-            color: #ffffff;
-            padding: 1rem 2.5rem;
-            border: 2px solid #3498DB;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            width: 80%;
-            max-width: 400px;
-        }
-        .demo-btn:hover {
-            background-color: #2980b9;
-            border-color: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            color: #fff;
-        }
-
-        /* Contacto Section */
-        .contacto {
-            background-color: #34495e;
-        }
-        .contacto form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .contacto form.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .contacto label {
-            text-align: left;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        .contacto input, .contacto textarea {
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border-radius: 4px;
-            border: 1px solid #7f8c8d;
-            background-color: #5d6d7e;
-            color: #ecf0f1;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .contacto input::placeholder, .contacto textarea::placeholder {
-            color: #bdc3c7;
-        }
-        .contacto button {
-            padding: 1rem;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .contacto button:hover {
-            background-color: #2980b9;
-        }
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #25D366;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 25px;
-            margin-top: 20px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .whatsapp-btn:hover {
-            background-color: #1DA851;
-            color: #fff;
-        }
-        .whatsapp-btn svg {
-            margin-right: 8px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #2c3e50;
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #34495e;
-        }
-
-        /* Animaciones */
-        .demos-container {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .demos-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+          },
+          colors: {
+            slate: {
+              850: '#110e24',
+              900: '#09071c',
+              950: '#030014',
+            },
+            primary: {
+              DEFAULT: '#a855f7', // Cyber Violet
+              glow: '#c084fc',
+            },
+            accent: {
+              DEFAULT: '#06b6d4', // Liquid Cyan
+              glow: '#22d3ee',
             }
-            nav ul {
-                margin-top: 1rem;
-                flex-direction: column;
-                align-items: center;
-            }
-            nav li {
-                margin: 0.5rem 0;
-            }
-            .hero-content h2 {
-                font-size: 2rem;
-            }
-            .hero-content p {
-                font-size: 1.1rem;
-            }
+          }
         }
-    </style>
+      }
+    };
+  </script>
 </head>
-<body>
-    <header class="sticky">
-        <h1 class="logo">
-            <img src="improbia.png" alt="ImprobIA - Consultoría en inteligencia artificial y desarrollo web" style="height: 1.8em; vertical-align: middle; margin-right: 0.5em; border-radius: 50%;">
-            ImprobIA
-        </h1>
-        <nav>
-            <ul>
-                <!-- Enlaces apuntan a la página principal -->
-                <li><a href="index.html#servicios">Servicios</a></li>
-                <li><a href="index.html#about">Sobre ImprobIA</a></li>
-                <li><a href="index.html#faq">FAQ</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Demos de Proyectos</h2>
-            <p>Explora algunos de nuestros trabajos de desarrollo web y soluciones personalizadas. Si lo puedes imaginar, se puede crear.</p>
-            <div class="demos-container">
-                <a href="demo1.html" class="demo-btn">Ver Demo 1</a>
-                <a href="demo2.html" class="demo-btn">Ver Demo 2</a>
-                <a href="demo3.html" class="demo-btn">Ver Demo 3</a>
-                <a href="https://g0ey87bgvns0-deploy.space.z.ai" class="demo-btn">Ver Demo 4</a>
-                <a href="demo5.html" class="demo-btn">EN CONSTRUCCIÓN</a>
-            </div>
-        </div>
-    </section>
-    
-    <section id="contacto" class="contacto">
-        <h2>Contáctanos</h2>
-        <form action="https://formspree.io/f/myzdodjn" method="POST" autocomplete="off">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" required>
-            
-            <label for="phone">Teléfono</label>
-            <input type="text" id="phone" name="phone" required>
-            
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" required></textarea>
-            
-            <button type="submit">Enviar</button>
-        </form>
-        <div class="form-feedback" id="form-feedback" style="display: none;"></div>
-        
-        <!-- Botón de WhatsApp -->
-        <a href="https://wa.me/34684059633/?text=Hola%20Me%20gustaría%20tener%20una%20reunión%20y%20solicitar%20información" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438C8.34 21.475 10.11 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm5.138 14.552c-.223.629-1.317 1.158-1.817 1.227-.499.069-1.021.093-1.642-.104-.377-.12-.858-.28-1.474-.488-2.626-1.136-4.34-3.822-4.473-3.998-.133-.176-1.085-1.463-1.085-2.792 0-1.329.688-1.984 1.042-2.248.354-.264.772-.33 1.042-.33.265 0 .53.012.76.022.243.012.57-.092.893.681.33.789 1.123 2.731 1.222 2.93.099.199.166.43.033.694-.133.264-.199.43-.398.66-.199.231-.418.517-.597.694-.199.199-.407.414-.176.813.231.4.03 1.84 2.135 2.972.528.282.931.377 1.275.473.344.096.554.08.759-.05.205-.132.51-.629.646-.847.137-.218.273-.182.459-.109.186.073 1.184.559 1.388.66.204.1.341.15.392.232.052.083.052.481-.171 1.11z"/>
-            </svg>
-            Contactar por WhatsApp
-        </a>
-    </section>
-    
-    <footer>
-        <p>&copy; 2024 ImprobIA. Todos los derechos reservados.</p>
-    </footer>
-    
-    <script>
-        // Intersection Observer para animaciones al hacer scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1 // El elemento se considera visible cuando el 10% está en pantalla
-        });
-        
-        // Observar el contenedor de demos y el formulario
-        document.querySelectorAll('.demos-container, .contacto form').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
 
+<body class="bg-slate-950 text-slate-200 antialiased selection:bg-primary/30 selection:text-white">
+
+  <!-- Background Spatial Grid & Fluid Mesh -->
+  <div class="mesh-gradient-container">
+    <div class="mesh-glow glow-1"></div>
+    <div class="mesh-glow glow-2"></div>
+    <div class="mesh-glow glow-3"></div>
+  </div>
+  <div class="grid-overlay"></div>
+  <div class="noise-overlay"></div>
+
+  <!-- Header Floating Pill -->
+  <header id="main-header" class="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50 glass-nav rounded-full px-6 py-3 md:px-8 md:py-3.5">
+    <div class="flex justify-between items-center w-full">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="relative w-8 h-8 md:w-9 md:h-9 rounded-xl overflow-hidden shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
+          <img src="improbia.png" alt="ImprobIA Logo" class="w-full h-full object-cover">
+          <div class="absolute inset-0 ring-1 ring-inset ring-white/20 rounded-xl"></div>
+        </div>
+        <span class="text-lg md:text-xl font-bold tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-300 transition-all font-display">
+          Improb<span class="text-primary-glow font-extrabold">IA</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="index.html#servicios" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors">Servicios</a>
+        <a href="index.html#about" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors">Nosotros</a>
+        <a href="index.html#faq" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors">FAQ</a>
+        <a href="#contacto" class="btn-primary px-5 py-2.5 text-sm font-bold text-white relative overflow-hidden group">
+          <span class="relative z-10">Contacto</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden p-2 text-slate-300 hover:text-white rounded-full hover:bg-white/5 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-white/5 space-y-2">
+      <a href="index.html#servicios" class="block px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-all">Servicios</a>
+      <a href="index.html#about" class="block px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-all">Nosotros</a>
+      <a href="index.html#faq" class="block px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-all">FAQ</a>
+      <a href="#contacto" class="block px-4 py-2.5 text-sm font-bold text-primary-glow hover:bg-white/5 rounded-xl transition-all">Contáctanos</a>
+    </div>
+  </header>
+
+  <main class="pt-28">
+    <!-- Hero Section -->
+    <section class="relative min-h-[50vh] flex items-center justify-center px-4 py-16 overflow-hidden">
+      <div class="max-w-4xl mx-auto text-center z-10 space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary-glow text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+          Casos Prácticos
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-none display-title text-white">
+          Demos de <span class="cyber-gradient-text block mt-3 py-1 text-glow">Proyectos</span>
+        </h1>
+
+        <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          Explora algunos de nuestros casos prácticos de desarrollo web inteligente, plataformas de comercio electrónico interactivas y sistemas de soporte optimizados.
+        </p>
+      </div>
+    </section>
+
+    <!-- Demos Grid Section -->
+    <section class="py-12 px-4 relative z-10">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          
+          <!-- Demo 1 -->
+          <div class="glass-card spotlight-card spotlight-border p-8 rounded-3xl relative group flex flex-col justify-between reveal-item">
+            <div class="space-y-6">
+              <div class="flex justify-between items-start">
+                <span class="text-3xl font-extrabold text-white/10 font-display">01</span>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">Carta Local</span>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-primary-glow transition-colors font-display">Horchatería Deliciosa</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Menú digital interactivo y mapa de geolocalización integrada para optimizar la captación física y el branding de un comercio de alimentación tradicional.
+              </p>
+            </div>
+            <div class="pt-8">
+              <a href="demo1.html" class="btn-primary w-full py-3.5 block text-center text-sm font-bold text-white shadow-lg">
+                <span class="relative z-10">Ver Demo Interactiva</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Demo 2 -->
+          <div class="glass-card spotlight-card spotlight-border p-8 rounded-3xl relative group flex flex-col justify-between reveal-item">
+            <div class="space-y-6">
+              <div class="flex justify-between items-start">
+                <span class="text-3xl font-extrabold text-white/10 font-display">02</span>
+                <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-accent-glow text-xs font-bold uppercase tracking-wider">E-Commerce</span>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-accent-glow transition-colors font-display">Catálogo Escolar</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Tienda online interactiva con carrito dinámico local de compras, checkout guiado y diseño responsivo premium enfocado a la venta ágil de uniformes escolares.
+              </p>
+            </div>
+            <div class="pt-8">
+              <a href="demo2.html" class="btn-primary w-full py-3.5 block text-center text-sm font-bold text-white shadow-lg">
+                <span class="relative z-10">Ver Demo Interactiva</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Demo 3 -->
+          <div class="glass-card spotlight-card spotlight-border p-8 rounded-3xl relative group flex flex-col justify-between reveal-item">
+            <div class="space-y-6">
+              <div class="flex justify-between items-start">
+                <span class="text-3xl font-extrabold text-white/10 font-display">03</span>
+                <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-primary-glow text-xs font-bold uppercase tracking-wider">Web Utility</span>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-primary-glow transition-colors font-display">Formulario de Soporte</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Formulario de contacto dinámico con etiquetas flotantes fluidas, animaciones integradas y estados de carga simulados para una interacción de usuario óptima.
+              </p>
+            </div>
+            <div class="pt-8">
+              <a href="demo3.html" class="btn-primary w-full py-3.5 block text-center text-sm font-bold text-white shadow-lg">
+                <span class="relative z-10">Ver Demo Interactiva</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Demo 4 -->
+          <div class="glass-card spotlight-card spotlight-border p-8 rounded-3xl relative group flex flex-col justify-between reveal-item">
+            <div class="space-y-6">
+              <div class="flex justify-between items-start">
+                <span class="text-3xl font-extrabold text-white/10 font-display">04</span>
+                <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">AI Platform</span>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-amber-400 transition-colors font-display">Despliegue Externo</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Demo en entorno de producción que demuestra el procesamiento y optimización de cargas de trabajo de IA integradas directamente en el navegador.
+              </p>
+            </div>
+            <div class="pt-8">
+              <a href="https://g0ey87bgvns0-deploy.space.z.ai" target="_blank" rel="noopener" class="btn-primary w-full py-3.5 block text-center text-sm font-bold text-white shadow-lg">
+                <span class="relative z-10">Explorar Plataforma</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Demo 5 -->
+          <div class="glass-card spotlight-card spotlight-border p-8 rounded-3xl relative group flex flex-col justify-between opacity-75 reveal-item">
+            <div class="space-y-6">
+              <div class="flex justify-between items-start">
+                <span class="text-3xl font-extrabold text-white/10 font-display">05</span>
+                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs font-bold uppercase tracking-wider">Próximamente</span>
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold text-slate-300 font-display">En Construcción</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Actualmente estamos estructurando nuevas automatizaciones comerciales y portales interactivos. Muy pronto se revelarán en esta sección.
+              </p>
+            </div>
+            <div class="pt-8">
+              <button disabled class="w-full py-3.5 bg-white/5 border border-white/5 rounded-full text-slate-500 text-sm font-bold cursor-not-allowed">
+                Próximamente
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-24 px-4 relative z-10">
+      <!-- Glow effect behind form -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-primary/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto relative">
+        <div class="text-center mb-16 reveal-item">
+          <span class="text-xs font-bold uppercase tracking-widest text-primary-glow font-display">Contacto</span>
+          <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3 display-title">Contáctanos</h2>
+          <p class="text-slate-400 text-sm md:text-base mt-3">Comienza a impulsar tu PYME hoy. Rellena los datos para recibir una propuesta estructurada.</p>
+        </div>
+
+        <div class="grid md:grid-cols-5 gap-8 bg-slate-900/30 backdrop-blur-xl border border-white/10 p-6 md:p-10 rounded-[32px] shadow-2xl reveal-item">
+          <!-- Info Column -->
+          <div class="md:col-span-2 text-left space-y-8 md:border-r border-white/5 md:pr-8 flex flex-col justify-between">
+            <div class="space-y-6">
+              <h3 class="text-lg md:text-xl font-bold text-white font-display">Canales de Atención</h3>
+              
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="flex items-center gap-3.5 group">
+                  <span class="w-10 h-10 rounded-xl bg-white/5 text-primary flex items-center justify-center border border-white/10 group-hover:border-primary/30 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  <a href="mailto:jorgeim97@gmail.com" class="hover:text-white transition-colors">jorgeim97@gmail.com</a>
+                </div>
+
+                <div class="flex items-center gap-3.5 group">
+                  <span class="w-10 h-10 rounded-xl bg-white/5 text-primary flex items-center justify-center border border-white/10 group-hover:border-primary/30 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </span>
+                  <a href="tel:+34684059633" class="hover:text-white transition-colors">+34 684 059 633</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-6 md:pt-0">
+              <a href="https://wa.me/34684059633/?text=Hola%20Me%20gustaría%20tener%20una%20reunión%20y%20solicitar%20información"
+                target="_blank" rel="noopener"
+                class="flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-bold transition-all hover:-translate-y-1 shadow-lg shadow-[#25D366]/10">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.569 1.956.884 3.012.885h.001c3.181 0 5.768-2.586 5.768-5.765 0-3.18-2.587-5.767-5.768-5.767zm3.844 8.019c-.161.428-.795.842-1.282.955-.487.113-2.586-.532-3.8-2.263-1.019-1.455-.71-1.928.188-2.213.197-.062.366-.192.529-.304.161-.112.211-.186.315-.316.105-.131.054-.246-.026-.407-.08-.161-.707-1.745-.97-2.392-.256-.63-.518-.544-.71-.555-.181-.011-.39-.011-.598-.011-.208 0-.547.078-.832.39-.286.312-1.092 1.066-1.092 2.6 0 1.534 1.116 3.016 1.274 3.226.155.209 2.196 3.355 5.318 4.704 1.968.85 2.736.879 3.212.818.824-.105 1.574-.645 1.794-1.266.221-.622.221-1.155.155-1.266-.067-.112-.246-.179-.519-.316z" />
+                </svg>
+                WhatsApp Directo
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form with unchanged Formspree logic -->
+          <form action="https://formspree.io/f/myzdodjn" method="POST" class="md:col-span-3 grid gap-6 text-left" autocomplete="off">
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- Name Input -->
+              <div class="form-group">
+                <input type="text" id="nombre" name="nombre" required placeholder=" "
+                  class="form-input">
+                <label for="nombre" class="form-label text-sm">Nombre</label>
+              </div>
+
+              <!-- Phone Input -->
+              <div class="form-group">
+                <input type="tel" id="phone" name="phone" required placeholder=" "
+                  class="form-input">
+                <label for="phone" class="form-label text-sm">Teléfono</label>
+              </div>
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-group">
+              <input type="email" id="email" name="email" required placeholder=" "
+                class="form-input">
+              <label for="email" class="form-label text-sm">Email</label>
+            </div>
+
+            <!-- Message Textarea -->
+            <div class="form-group">
+              <textarea id="mensaje" name="mensaje" rows="4" required placeholder=" "
+                class="form-input"></textarea>
+              <label for="mensaje" class="form-label text-sm">Mensaje sobre tu proyecto</label>
+            </div>
+
+            <button type="submit" class="btn-primary w-full py-4 text-white text-sm md:text-base font-bold shadow-xl shadow-purple-500/20">
+              <span class="relative z-10">Enviar Mensaje</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5 bg-slate-950/80 backdrop-blur-md py-12 mt-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="improbia.png" alt="ImprobIA"
+          class="w-7 h-7 rounded-lg grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+        <p class="text-slate-500 text-xs md:text-sm">© 2026 ImprobIA. Todos los derechos reservados.</p>
+      </div>
+
+      <div class="flex gap-6">
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="text-slate-500 hover:text-white transition-colors">
+          <span class="sr-only">LinkedIn</span>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="text-slate-500 hover:text-white transition-colors">
+          <span class="sr-only">Instagram</span>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header Scroll shrink & glow animation
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.classList.add('glass-nav-shrunk', 'top-2');
+        header.classList.remove('top-4');
+      } else {
+        header.classList.remove('glass-nav-shrunk', 'top-2');
+        header.classList.add('top-4');
+      }
+    });
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Card mousemove spotlight tracker (Vercel spotlight design)
+    const cards = document.querySelectorAll('.spotlight-card, .spotlight-border');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Intersection Observer for scroll staggered reveals
+    const revealOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, revealOptions);
+
+    const revealElements = document.querySelectorAll('.reveal-item');
+    revealElements.forEach((el) => {
+      // stagger sibling items slightly if in grids
+      const siblings = el.parentElement.querySelectorAll(':scope > .reveal-item');
+      if (siblings.length > 1) {
+        const siblingIndex = Array.from(siblings).indexOf(el);
+        el.style.transitionDelay = `${siblingIndex * 100}ms`;
+      }
+      revealObserver.observe(el);
+    });
+
+    // Smooth Anchor Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        mobileMenu.classList.add('hidden');
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerHeight = header.offsetHeight;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 16;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
